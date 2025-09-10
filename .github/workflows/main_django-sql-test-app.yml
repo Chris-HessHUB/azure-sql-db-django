@@ -28,7 +28,18 @@ jobs:
         run: |
           python -m venv venv
           source venv/bin/activate
-      
+          
+      - name: Install ODBC build prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y unixodbc-dev
+
+      # (Optional but helpful) Show ODBC header presence for debugging
+      - name: Verify ODBC headers (optional)
+        run: |
+          pkg-config --cflags odbc || true
+          dpkg -L unixodbc-dev | grep -E 'sql.h|sqlext.h' || true
+          
       - name: Install dependencies
         run: pip install -r requirements.txt
         
@@ -58,4 +69,5 @@ jobs:
         with:
           app-name: 'django-sql-test-app'
           slot-name: 'Production'
+
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C8DB1CF38CEE44FCA9502C27083CDCD3 }}
