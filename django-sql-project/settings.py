@@ -66,7 +66,7 @@ MIDDLEWARE = [
 
 
 
-ROOT_URLCONF = 'django-sql-project.urls'
+ROOT_URLCONF = 'django_sql_project.urls'
 
 TEMPLATES = [
     {
@@ -84,7 +84,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'django-sql-project.wsgi.application'
+WSGI_APPLICATION = 'django_sql_project.wsgi.application'
 
 
 # Database connection details
